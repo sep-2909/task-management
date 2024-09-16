@@ -14,23 +14,28 @@ public class TaskDetailsController {
     @Autowired
     private TaskDetailsService taskDetailsService;
 
-    @GetMapping("/getAllTasks")
+    @GetMapping("/tasks")
     public List<TaskDetails> getAllTaskDetails(){
         return taskDetailsService.getAllTaskDetails();
     }
 
-    @GetMapping("/getAllTasks/{taskId}")
-    public TaskDetails getTaskDetailsById(@PathVariable Long taskId){
-        return taskDetailsService.getTaskDetailsById(taskId);
+    @GetMapping("/tasks/{id}")
+    public TaskDetails getTaskDetailsById(@PathVariable Long id){
+        return taskDetailsService.getTaskDetailsById(id);
     }
 
-    @PostMapping("/addTask")
+    @PostMapping("/tasks")
     public String addTaskDetails(@RequestBody TaskDetails taskDetails){
         return taskDetailsService.createTask(taskDetails);
     }
 
-    @PutMapping("/updateTask/{taskId}")
-    public String updateTaskDetails(@RequestBody TaskDetails taskDetails, @PathVariable Long taskId){
-        return taskDetailsService.updateTask(taskDetails, taskId);
+    @PutMapping("/tasks/{id}")
+    public String updateTaskDetails(@RequestBody TaskDetails taskDetails, @PathVariable Long id){
+        return taskDetailsService.updateTask(taskDetails, id);
+    }
+
+    @DeleteMapping("/tasks/{id}")
+    public String deleteTaskDetails(@RequestBody TaskDetails taskDetails, @PathVariable Long id){
+        return taskDetailsService.deleteTask(id);
     }
 }
